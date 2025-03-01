@@ -1,0 +1,15 @@
+ADD=1
+SUBTRACT=2
+MULTI=3
+DIVI=4
+LEFT_PARENTH=5
+RIGHT_PARENTH=6
+ID=7
+DIGIT=8
+WS=9
+'+'=1
+'-'=2
+'*'=3
+'/'=4
+'('=5
+')'=6

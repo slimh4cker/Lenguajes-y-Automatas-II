@@ -1,0 +1,35 @@
+*empty*
+
+,,
+Juan,25,Madrid
+Ana,30,Barcelona
+
+nombre completo, edad, ciudad
+Juan Perez,25,Madrid
+
+nombre,nombre,edad
+Juan,25,Madrid
+Ana,30,Barcelona
+
+nombre,edad,ciudad
+Juan,25
+Ana,30,Barcelona
+
+ nombre ,edad ,ciudad
+Juan,25,Madrid
+Ana,30,Barcelona
+
+-----------------
+nombre,edad,ciudad
+Juan,25,Madrid
+
+Ana,30,Barcelona
+-----------------
+
+nombre,,ciudad
+Juan,25,Madrid
+Ana,30,Barcelona
+
+nombre edad ciudad
+Juan 25 Madrid
+Ana 30 Barcelona
