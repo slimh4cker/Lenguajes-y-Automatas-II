@@ -23,6 +23,9 @@ class CSVValidationListener(CSVListener):
                 elif any(c.isspace() for c in text):
                     self.errors.append(f"Invalid header '{text}': Contains whitespace")
 
+            self.header_fields = [f.TEXT().getText() if f.TEXT() else "" for f in ctx.field()]
+            self.expected_fields = len(self.header_fields)
+
             if len(self.header_fields) != len(set(self.header_fields)):
                 self.errors.append("Error: Duplicate header fields")
 

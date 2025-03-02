@@ -1,17 +1,18 @@
 from tkinter import scrolledtext
 from tkinter import *
 import tkinter as tk
-from practicas2.csv.utils.classes.App import App
 from antlr4 import ParseTreeWalker
 from practicas2.csv.backend.csv_processing import csv_processing
 from practicas2.csv.utils.classes.CSVValidation import CSVValidationListener
 
 
-class GuiTerminal(App):
+class GuiTerminal(tk.Tk):
     def __init__(self, *args):
-        super().__init__(*args)
-        self.content_input = None
-        self.result_output = None
+        title, size = args
+        super().__init__()
+
+        self.title(title)
+        self.geometry(size)
         self.configure(bg='#1a1b2f')
         self.grid_rowconfigure(1, weight=1)
         self.grid_rowconfigure(2, weight=2)
@@ -84,7 +85,6 @@ class GuiTerminal(App):
 
             if all_errors:
                 self.display_result("✗ Invalid CSV", False)
-                # self.display_result("\n".join(all_errors), False)
             else:
                 stats_info = (
                     "\n\n"
@@ -104,4 +104,4 @@ class GuiTerminal(App):
                 self.display_result(success_msg, is_valid=True)
 
         except Exception as e:
-            self.display_result(f"Critic Error: {str(e)}", False)
+            self.display_result(f"Critical Error: {str(e)}", False)
