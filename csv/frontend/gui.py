@@ -84,7 +84,8 @@ class GuiTerminal(tk.Tk):
             all_errors = error_handler.errors + listener.errors
 
             if all_errors:
-                self.display_result("✗ Invalid CSV", False)
+                # self.display_result("✗ Invalid CSV", False)
+                self.display_result("\n".join(all_errors), False)
             else:
                 stats_info = (
                     "\n\n"

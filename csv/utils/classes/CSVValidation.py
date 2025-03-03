@@ -18,16 +18,11 @@ class CSVValidationListener(CSVListener):
             self.total_fields += self.num_fields_current_row
             for field in ctx.field():
                 text = field.TEXT().getText() if field.TEXT() else ""
-                if not text:
-                    self.errors.append("Error: Header field cannot be empty")
-                elif any(c.isspace() for c in text):
+                if text and any(c.isspace() for c in text):
                     self.errors.append(f"Invalid header '{text}': Contains whitespace")
 
             self.header_fields = [f.TEXT().getText() if f.TEXT() else "" for f in ctx.field()]
             self.expected_fields = len(self.header_fields)
-
-            if len(self.header_fields) != len(set(self.header_fields)):
-                self.errors.append("Error: Duplicate header fields")
 
     def enterRow(self, ctx: CSVParser.RowContext):
         num_fields = len(ctx.field())
