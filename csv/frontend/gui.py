@@ -1,10 +1,11 @@
 from tkinter import scrolledtext
 from tkinter import *
 import tkinter as tk
+import csv
 from antlr4 import ParseTreeWalker
 from practicas2.csv.backend.csv_processing import csv_processing
 from practicas2.csv.utils.classes.CSVValidation import CSVValidationListener
-
+from practicas2.csv.backend.MyVisitor import MyVisitor
 
 class GuiTerminal(tk.Tk):
     def __init__(self, *args):
@@ -78,11 +79,21 @@ class GuiTerminal(tk.Tk):
         try:
             parser, lexer, tokens, error_handler = csv_processing(input_text)
             tree = parser.file_()
+            print("Hola")
             listener = CSVValidationListener()
+            print("Hola")
             walker = ParseTreeWalker()
+            print("Hola")
             walker.walk(listener, tree)
+            print("Hola")
             all_errors = error_handler.errors + listener.errors
-
+            print("Hola")
+            visitor = MyVisitor()
+            print("Hola")
+            visitor.visit(tree)
+            print("Hola")
+            
+        
             if all_errors:
                 # self.display_result("✗ Invalid CSV", False)
                 self.display_result("\n".join(all_errors), False)
@@ -100,8 +111,17 @@ class GuiTerminal(tk.Tk):
                     listener.num_fields_current_row,
                     listener.total_fields
                 )
-
-                success_msg = f"✅ Valid CSV\n{stats_info}"
+                
+                header = visitor.encabezado
+                rows = visitor.filas
+                csv_name = "practicas2/csv/utils/docs/alumns.csv"
+                with open(csv_name, mode="w", newline="", encoding="utf-8") as file:
+                    writer = csv.writer(file)
+                    writer.writerow(header)
+                    writer.writerows(rows)
+                
+                csv_generated = f"CSV are located in {csv_name}"
+                success_msg = f"✅ Valid CSV\n{stats_info}\n{csv_generated}"
                 self.display_result(success_msg, is_valid=True)
 
         except Exception as e:
