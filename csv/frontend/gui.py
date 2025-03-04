@@ -115,18 +115,32 @@ class GuiTerminal(tk.Tk):
         )
         self.result_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-
     def save_csv(self):
-        input_text = self.content_input.get("1.0", tk.END).strip()  # Obtener el texto del CSV
 
-        if not input_text:  # Verificar si el área de texto está vacía
-            messagebox.showerror("Error", "No hay contenido para guardar.")
-            return
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".csv",
+            filetypes=[("Archivos CSV", "*.csv")],
+            title="Guardar archivo CSV"
+        )
 
-
-        is_valid = self.validate_csv()
-        if is_valid:
-            pass
+        if file_path:
+            try:
+                input_text = self.content_input.get("1.0", tk.END).strip()
+                parser, lexer, tokens, error_handler = csv_processing(input_text)
+                tree = parser.file_()
+                visitor = MyVisitor()
+                visitor.visit(tree)
+                header = visitor.headers
+                rows = visitor.filas
+                with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+                    writer = csv.writer(file)
+                    writer.writerow(header)
+                    writer.writerows(rows)
+                csv_generated = f"\nCSV guardado en: {os.path.abspath(file_path)}"
+                saved_csv = f"✅ Valid CSV\n{csv_generated}"
+                self.display_result(saved_csv, is_valid=True)
+            except Exception as e:
+                messagebox.showerror("Error", f"No se pudo guardar el archivo: {e}")
 
 
     def load_csv(self):
@@ -172,8 +186,7 @@ class GuiTerminal(tk.Tk):
             walker = ParseTreeWalker()
             walker.walk(listener, tree)
             all_errors = error_handler.errors + listener.errors
-            visitor = MyVisitor()
-            visitor.visit(tree)
+
 
             if all_errors:
                 self.display_result("✗ Invalid CSV", False)
@@ -193,16 +206,7 @@ class GuiTerminal(tk.Tk):
                     listener.total_fields
                 )
 
-                header = visitor.headers
-                rows = visitor.filas
-                csv_name = "utils/docs/alumns.csv"
-                with open(csv_name, mode="w", newline="", encoding="utf-8") as file:
-                    writer = csv.writer(file)
-                    writer.writerow(header)
-                    writer.writerows(rows)
-
-                csv_generated = f"\nCSV is located in {csv_name}"
-                success_msg = f"✅ Valid CSV\n{stats_info}\n{csv_generated}"
+                success_msg = f"✅ Valid CSV\n{stats_info}"
                 self.display_result(success_msg, is_valid=True)
 
         except Exception as e:
