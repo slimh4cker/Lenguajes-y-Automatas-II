@@ -1,7 +1,9 @@
-from tkinter import scrolledtext, filedialog
+import os
+from tkinter import scrolledtext, filedialog, messagebox
 from tkinter import *
 import tkinter as tk
 import csv
+from PIL import Image, ImageTk
 from antlr4 import ParseTreeWalker
 from practicas2.csv.backend.csv_processing import csv_processing
 from practicas2.csv.utils.classes.CSVValidation import CSVValidationListener
@@ -25,24 +27,69 @@ class GuiTerminal(tk.Tk):
         self.create_widgets()
 
     def create_widgets(self):
+        file_path = os.path.dirname(os.path.realpath(__file__))
+
+        # Imagen para Browse
+        img_browse_path = os.path.join(file_path, "folder-browser.png")
+        if os.path.exists(img_browse_path):
+            img_browse_file = Image.open(img_browse_path)
+            img_browse_file = img_browse_file.resize((20, 20), Image.Resampling.LANCZOS)
+            self.img_browser = ImageTk.PhotoImage(img_browse_file)
+        else:
+            self.img_browser = None
+
+        # Imagen para Analyze
+        img_analyse_path = os.path.join(file_path, "analyse-file.png")
+        if os.path.exists(img_analyse_path):
+            img_analyse_file = Image.open(img_analyse_path)
+            img_analyse_file = img_analyse_file.resize((20, 20), Image.Resampling.LANCZOS)
+            self.img_analyse = ImageTk.PhotoImage(img_analyse_file)
+        else:
+            self.img_analyse = None
+
         buttons_frame = tk.Frame(self, bg='#1a1b2f')
         buttons_frame.grid(row=0, column=0, sticky="n", padx=10, pady=(10, 5))
 
+        # Botón Analyze con imagen
         button_execute = tk.Button(
-            buttons_frame, text='Analyse', command=self.validate_csv,
-            bg='#6a5acd', fg='#dcdcdc', activebackground='#836fff',
-            activeforeground='#1a1b2f', font=('Courier', 12),
-            relief=FLAT, width=12
+            buttons_frame,
+            text=' Analyse',
+            command=self.validate_csv,
+            image=self.img_analyse,
+            compound=LEFT,
+            bg='#6a5acd',
+            fg='#dcdcdc',
+            activebackground='#836fff',
+            activeforeground='#1a1b2f',
+            font=('Courier', 12),
+            relief=FLAT,
+            width=125
         )
         button_execute.pack(side=LEFT, padx=5)
 
         button_browse = tk.Button(
-            buttons_frame, text='Browse', command=self.load_csv,
+            buttons_frame,
+            text=' Browse',
+            command=self.load_csv,
+            image=self.img_browser,
+            compound=LEFT,
+            bg='#6a5acd',
+            fg='#dcdcdc',
+            activebackground='#836fff',
+            activeforeground='#1a1b2f',
+            font=('Courier', 12),
+            relief=FLAT,
+            width=125
+        )
+        button_browse.pack(side=LEFT, padx=5)
+
+        button_save = tk.Button(
+            buttons_frame, text='Save', command=self.save_csv,
             bg='#6a5acd', fg='#dcdcdc', activebackground='#836fff',
             activeforeground='#1a1b2f', font=('Courier', 12),
             relief=FLAT, width=12
         )
-        button_browse.pack(side=LEFT, padx=5)
+        button_save.pack(side=LEFT, padx=5)
 
         # Input Expr Frame
         input_frame = tk.Frame(self, bg='#1a1b2f')
@@ -67,6 +114,20 @@ class GuiTerminal(tk.Tk):
             fg='#dcdcdc', font=('Courier', 12), borderwidth=0
         )
         self.result_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
+
+
+    def save_csv(self):
+        input_text = self.content_input.get("1.0", tk.END).strip()  # Obtener el texto del CSV
+
+        if not input_text:  # Verificar si el área de texto está vacía
+            messagebox.showerror("Error", "No hay contenido para guardar.")
+            return
+
+
+        is_valid = self.validate_csv()
+        if is_valid:
+            pass
+
 
     def load_csv(self):
         file_path = filedialog.askopenfilename(
@@ -134,13 +195,13 @@ class GuiTerminal(tk.Tk):
 
                 header = visitor.headers
                 rows = visitor.filas
-                csv_name = "practicas2/csv/utils/docs/alumns.csv"
+                csv_name = "utils/docs/alumns.csv"
                 with open(csv_name, mode="w", newline="", encoding="utf-8") as file:
                     writer = csv.writer(file)
                     writer.writerow(header)
                     writer.writerows(rows)
 
-                csv_generated = f"CSV are located in {csv_name}"
+                csv_generated = f"\nCSV is located in {csv_name}"
                 success_msg = f"✅ Valid CSV\n{stats_info}\n{csv_generated}"
                 self.display_result(success_msg, is_valid=True)
 
