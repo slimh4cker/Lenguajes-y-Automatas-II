@@ -1,4 +1,4 @@
-# Laguna Salvador
+# Barragang
 
 from practicas2.words_analyzer.frontend.gui import GuiTerminal
 
