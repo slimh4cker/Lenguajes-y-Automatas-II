@@ -21,26 +21,22 @@ class GuiTerminal(tk.Tk):
 
         self.create_widgets()
 
-    def create_widgets(self):
+    def load_image(self, image_name, size=(20, 20)):
         file_path = os.path.dirname(os.path.realpath(__file__))
+        img_path = os.path.join(file_path, image_name)
 
-        # Imagen para Browse
-        img_browse_path = os.path.join(file_path, "folder-browser.png")
-        if os.path.exists(img_browse_path):
-            img_browse_file = Image.open(img_browse_path)
-            img_browse_file = img_browse_file.resize((20, 20), Image.Resampling.LANCZOS)
-            self.img_browser = ImageTk.PhotoImage(img_browse_file)
+        if os.path.exists(img_path):
+            img_file = Image.open(img_path)
+            img_file = img_file.resize(size, Image.Resampling.LANCZOS)
+            return ImageTk.PhotoImage(img_file)
         else:
-            self.img_browser = None
+            return None
 
-        # Imagen para Analyze
-        img_analyse_path = os.path.join(file_path, "analyse-file.png")
-        if os.path.exists(img_analyse_path):
-            img_analyse_file = Image.open(img_analyse_path)
-            img_analyse_file = img_analyse_file.resize((20, 20), Image.Resampling.LANCZOS)
-            self.img_analyse = ImageTk.PhotoImage(img_analyse_file)
-        else:
-            self.img_analyse = None
+    def create_widgets(self):
+        self.img_browser = self.load_image("folder-browser.png")
+        self.img_analyse = self.load_image("analyse-file.png")
+        self.img_save_file = self.load_image("save-file.png")
+
 
         buttons_frame = tk.Frame(self, bg='#1a1b2f')
         buttons_frame.grid(row=0, column=0, sticky="n", padx=10, pady=(10, 5))
@@ -79,10 +75,12 @@ class GuiTerminal(tk.Tk):
         button_browse.pack(side=LEFT, padx=5)
 
         button_save = tk.Button(
-            buttons_frame, text='Save', command=self.save_csv,
+            buttons_frame, text=' Save', command=self.save_csv,
+            image=self.img_save_file,
+            compound=LEFT,
             bg='#6a5acd', fg='#dcdcdc', activebackground='#836fff',
             activeforeground='#1a1b2f', font=('Courier', 12),
-            relief=FLAT, width=12
+            relief=FLAT, width=125
         )
         button_save.pack(side=LEFT, padx=5)
 
