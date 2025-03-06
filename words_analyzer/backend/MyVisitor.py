@@ -1,33 +1,39 @@
-from backend.output.WordsParser import WordsParser
-from backend.output.WordsVisitor import WordsVisitor
+from collections import defaultdict
+from practicas2.words_analyzer.backend.output.WordsParser import WordsParser
+from practicas2.words_analyzer.backend.output.WordsVisitor import WordsVisitor
+
 
 class MyVisitor(WordsVisitor):
     def __init__(self):
         super().__init__()
-        self.unique_fruits = set()  # Set no permite valores repetidos
+        self.unique_fruits = set()
+        self.fruits_by_month = defaultdict(set)
+        self.fruit_counts = defaultdict(int)
 
     def visitTexto(self, ctx: WordsParser.TextoContext):
         for seccion in ctx.seccion_mes():
             self.visit(seccion)
-        for otro in ctx.otro():
-            self.visit(otro)
-        print(self.unique_fruits) # Para validar las frutas
-        return len(self.unique_fruits)
+        return {
+            "unique": self.unique_fruits,
+            "monthly": self.fruits_by_month,
+            "counts": self.fruit_counts
+        }
 
     def visitSeccion_mes(self, ctx: WordsParser.Seccion_mesContext):
-        for f in ctx.fruta():
-            self.visit(f)
-        for otro in ctx.otro():
-            self.visit(otro)
+        month = ctx.MONTH().getText()
+        for fruta in ctx.fruta():
+            fruit_name = self.visit(fruta)
+            if fruit_name:
+                self.unique_fruits.add(fruit_name)
+                self.fruits_by_month[month].add(fruit_name)
+                self.fruit_counts[fruit_name] += 1
         return None
 
     def visitFruta(self, ctx: WordsParser.FrutaContext):
-        fruit = None
-        if ctx.FRUIT_SINGULAR() is not None:
-            fruit = ctx.FRUIT_SINGULAR().getText()
-        # si es plural se convierte a singular
-        elif ctx.FRUIT_PLURAL() is not None:
-            plural_fruit = ctx.FRUIT_PLURAL().getText()
+        if ctx.FRUIT_SINGULAR():
+            return ctx.FRUIT_SINGULAR().getText()
+        elif ctx.FRUIT_PLURAL():
+            plural = ctx.FRUIT_PLURAL().getText()
             mapping = {
                 "Naranjas": "Naranja",
                 "Mandarinas": "Mandarina",
@@ -49,7 +55,5 @@ class MyVisitor(WordsVisitor):
                 "Uvas": "Uva",
                 "Granadas": "Granada"
             }
-            fruit = mapping.get(plural_fruit, plural_fruit)
-        if fruit:
-            self.unique_fruits.add(fruit)
+            return mapping.get(plural, plural)
         return None

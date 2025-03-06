@@ -4,10 +4,9 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 from antlr4 import InputStream, CommonTokenStream
-
-from backend.output.WordsLexer import WordsLexer
-from backend.output.WordsParser import WordsParser
-from backend.MyVisitor import MyVisitor
+from practicas2.words_analyzer.backend.output.WordsLexer import WordsLexer
+from practicas2.words_analyzer.backend.output.WordsParser import WordsParser
+from practicas2.words_analyzer.backend.MyVisitor import MyVisitor
 
 
 class GuiTerminal(tk.Tk):
@@ -41,7 +40,6 @@ class GuiTerminal(tk.Tk):
         self.img_browser = self.load_image("folder-browser.png")
         self.img_analyse = self.load_image("analyse-file.png")
         self.img_save_file = self.load_image("save-file.png")
-
 
         buttons_frame = tk.Frame(self, bg='#1a1b2f')
         buttons_frame.grid(row=0, column=0, sticky="n", padx=10, pady=(10, 5))
@@ -116,9 +114,9 @@ class GuiTerminal(tk.Tk):
     def save_csv(self):
 
         file_path = filedialog.asksaveasfilename(
-            defaultextension=".csv",
-            filetypes=[("Archivos CSV", "*.csv")],
-            title="Guardar archivo CSV"
+            defaultextension=".txt",
+            filetypes=[("Archivos de texto", "*.txt")],
+            title="Guardar archivo de texto"
         )
 
     def load_file_txt(self):
@@ -144,7 +142,7 @@ class GuiTerminal(tk.Tk):
         color = "#66ff66" if is_valid else "#ff6666"
 
         self.result_output.tag_configure(tag, foreground=color)
-        self.result_output.insert(tk.END, "\n".join(message), tag)
+        self.result_output.insert(tk.END, message, tag)
         self.result_output.config(state=tk.DISABLED)
 
     def validate_text(self):
@@ -156,10 +154,16 @@ class GuiTerminal(tk.Tk):
             parser = WordsParser(token_stream)
             tree = parser.texto()
             visitor = MyVisitor()
-           
-            visitor.visit(tree)
-            results = f"Fruits number {len(visitor.unique_fruits)}\n" # Despues del \n ingresa el resultado 2 o 3
 
-            self.display_result(f"{results}", True)
+            results = visitor.visit(tree)
+            report = [f"Frutas únicas totales: {len(results['unique'])}", "\nFrutas por mes:"]
+            for month, fruits in results["monthly"].items():
+                report.append(f"  {month}: {len(fruits)} frutas únicas")
+
+            report.append("\nApariciones por fruta:")
+            for fruit, count in sorted(results["counts"].items()):
+                report.append(f"  {fruit}: {count}")
+
+            self.display_result("\n".join(report), True)
         except Exception as e:
             self.display_result(f"Error en el análisis: {str(e)}", False)
