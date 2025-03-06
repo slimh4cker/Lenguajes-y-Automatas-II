@@ -151,19 +151,12 @@ class GuiTerminal(tk.Tk):
         input_text = self.content_input.get("1.0", tk.END)
         try:
             input_stream = InputStream(input_text)
-            print("Hola")
             lexer = WordsLexer(input_stream)
-            print("Hola")
             token_stream = CommonTokenStream(lexer)
-            print("Hola")
             parser = WordsParser(token_stream)
-            print("Hola")
             tree = parser.texto()
-            print("Hola")
             visitor = MyVisitor()
-            print("Hola")
             result = visitor.visit(tree)
-            print("Hola otra vez")
 
             self.display_result(f"Análisis exitoso:\n{result}", True)
         except Exception as e:
