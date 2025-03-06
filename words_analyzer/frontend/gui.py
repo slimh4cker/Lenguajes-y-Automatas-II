@@ -144,7 +144,7 @@ class GuiTerminal(tk.Tk):
         color = "#66ff66" if is_valid else "#ff6666"
 
         self.result_output.tag_configure(tag, foreground=color)
-        self.result_output.insert(tk.END, message, tag)
+        self.result_output.insert(tk.END, "\n".join(message), tag)
         self.result_output.config(state=tk.DISABLED)
 
     def validate_text(self):
@@ -156,8 +156,10 @@ class GuiTerminal(tk.Tk):
             parser = WordsParser(token_stream)
             tree = parser.texto()
             visitor = MyVisitor()
-            result = visitor.visit(tree)
+           
+            visitor.visit(tree)
+            results = f"Fruits number {len(visitor.unique_fruits)}\n" # Despues del \n ingresa el resultado 2 o 3
 
-            self.display_result(f"Análisis exitoso:\n{result}", True)
+            self.display_result(f"{results}", True)
         except Exception as e:
             self.display_result(f"Error en el análisis: {str(e)}", False)
