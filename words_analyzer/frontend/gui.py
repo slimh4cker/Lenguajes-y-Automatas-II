@@ -3,6 +3,11 @@ from tkinter import scrolledtext, filedialog
 from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
+from antlr4 import InputStream, CommonTokenStream
+
+from backend.output.WordsLexer import WordsLexer
+from backend.output.WordsParser import WordsParser
+from backend.MyVisitor import MyVisitor
 
 
 class GuiTerminal(tk.Tk):
@@ -45,7 +50,7 @@ class GuiTerminal(tk.Tk):
         button_execute = tk.Button(
             buttons_frame,
             text=' Analyse',
-            command="",
+            command=self.validate_text,
             image=self.img_analyse,
             compound=LEFT,
             bg='#6a5acd',
@@ -141,3 +146,25 @@ class GuiTerminal(tk.Tk):
         self.result_output.tag_configure(tag, foreground=color)
         self.result_output.insert(tk.END, message, tag)
         self.result_output.config(state=tk.DISABLED)
+
+    def validate_text(self):
+        input_text = self.content_input.get("1.0", tk.END)
+        try:
+            input_stream = InputStream(input_text)
+            print("Hola")
+            lexer = WordsLexer(input_stream)
+            print("Hola")
+            token_stream = CommonTokenStream(lexer)
+            print("Hola")
+            parser = WordsParser(token_stream)
+            print("Hola")
+            tree = parser.texto()
+            print("Hola")
+            visitor = MyVisitor()
+            print("Hola")
+            result = visitor.visit(tree)
+            print("Hola otra vez")
+
+            self.display_result(f"Análisis exitoso:\n{result}", True)
+        except Exception as e:
+            self.display_result(f"Error en el análisis: {str(e)}", False)

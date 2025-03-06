@@ -1,6 +1,6 @@
 # Barragang
 
-from practicas2.words_analyzer.frontend.gui import GuiTerminal
+from frontend.gui import GuiTerminal
 
 
 if __name__ == "__main__":

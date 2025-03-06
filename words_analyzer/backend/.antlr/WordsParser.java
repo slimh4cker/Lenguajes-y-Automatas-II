@@ -1,4 +1,4 @@
-// Generated from c:/Users/monte/OneDrive/Documentos/proyecto/Lenguajes-y-Automatas-II/words_analyzer/backend/Words.g4 by ANTLR 4.13.1
+// Generated from d:/Mis trabajos/6to semestre/Lenguajes y automatas II/Lenguajes-y-Automatas-II/words_analyzer/backend/Words.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -17,7 +17,7 @@ public class WordsParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		MONTH=1, COLON=2, FRUIT_SINGULAR=3, FRUIT_PLURAL=4, WORD=5, NUMBER=6, 
-		PUNCTUATION=7, WHITESPACE=8, NEWLINE=9, WS=10;
+		PUNCTUATION=7, WHITESPACE=8, NEWLINE=9;
 	public static final int
 		RULE_texto = 0, RULE_seccion_mes = 1, RULE_fruta = 2, RULE_otro = 3;
 	private static String[] makeRuleNames() {
@@ -36,7 +36,7 @@ public class WordsParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "MONTH", "COLON", "FRUIT_SINGULAR", "FRUIT_PLURAL", "WORD", "NUMBER", 
-			"PUNCTUATION", "WHITESPACE", "NEWLINE", "WS"
+			"PUNCTUATION", "WHITESPACE", "NEWLINE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -168,7 +168,10 @@ public class WordsParser extends Parser {
 	public static class Seccion_mesContext extends ParserRuleContext {
 		public TerminalNode MONTH() { return getToken(WordsParser.MONTH, 0); }
 		public TerminalNode COLON() { return getToken(WordsParser.COLON, 0); }
-		public TerminalNode NEWLINE() { return getToken(WordsParser.NEWLINE, 0); }
+		public List<TerminalNode> WHITESPACE() { return getTokens(WordsParser.WHITESPACE); }
+		public TerminalNode WHITESPACE(int i) {
+			return getToken(WordsParser.WHITESPACE, i);
+		}
 		public List<FrutaContext> fruta() {
 			return getRuleContexts(FrutaContext.class);
 		}
@@ -198,22 +201,36 @@ public class WordsParser extends Parser {
 			match(MONTH);
 			setState(17);
 			match(COLON);
-			setState(18);
-			match(NEWLINE);
-			setState(21); 
+			setState(21);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(18);
+					match(WHITESPACE);
+					}
+					} 
+				}
+				setState(23);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			}
+			setState(26); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
 				switch (_alt) {
 				case 1:
 					{
-					setState(21);
+					setState(26);
 					_errHandler.sync(this);
 					switch (_input.LA(1)) {
 					case FRUIT_SINGULAR:
 					case FRUIT_PLURAL:
 						{
-						setState(19);
+						setState(24);
 						fruta();
 						}
 						break;
@@ -222,7 +239,7 @@ public class WordsParser extends Parser {
 					case WHITESPACE:
 					case NEWLINE:
 						{
-						setState(20);
+						setState(25);
 						otro();
 						}
 						break;
@@ -234,9 +251,9 @@ public class WordsParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(23); 
+				setState(28); 
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
@@ -268,7 +285,7 @@ public class WordsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(25);
+			setState(30);
 			_la = _input.LA(1);
 			if ( !(_la==FRUIT_SINGULAR || _la==FRUIT_PLURAL) ) {
 			_errHandler.recoverInline(this);
@@ -323,7 +340,7 @@ public class WordsParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(28); 
+			setState(33); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -331,7 +348,7 @@ public class WordsParser extends Parser {
 				case 1:
 					{
 					{
-					setState(27);
+					setState(32);
 					_la = _input.LA(1);
 					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 928L) != 0)) ) {
 					_errHandler.recoverInline(this);
@@ -347,9 +364,9 @@ public class WordsParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(30); 
+				setState(35); 
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
@@ -365,30 +382,33 @@ public class WordsParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\n!\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\t&\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000\u0004"+
 		"\u0000\u000b\b\u0000\u000b\u0000\f\u0000\f\u0001\u0000\u0001\u0000\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0004\u0001\u0016"+
-		"\b\u0001\u000b\u0001\f\u0001\u0017\u0001\u0002\u0001\u0002\u0001\u0003"+
-		"\u0004\u0003\u001d\b\u0003\u000b\u0003\f\u0003\u001e\u0001\u0003\u0000"+
-		"\u0000\u0004\u0000\u0002\u0004\u0006\u0000\u0002\u0001\u0000\u0003\u0004"+
-		"\u0002\u0000\u0005\u0005\u0007\t!\u0000\n\u0001\u0000\u0000\u0000\u0002"+
-		"\u0010\u0001\u0000\u0000\u0000\u0004\u0019\u0001\u0000\u0000\u0000\u0006"+
-		"\u001c\u0001\u0000\u0000\u0000\b\u000b\u0003\u0002\u0001\u0000\t\u000b"+
-		"\u0003\u0006\u0003\u0000\n\b\u0001\u0000\u0000\u0000\n\t\u0001\u0000\u0000"+
-		"\u0000\u000b\f\u0001\u0000\u0000\u0000\f\n\u0001\u0000\u0000\u0000\f\r"+
-		"\u0001\u0000\u0000\u0000\r\u000e\u0001\u0000\u0000\u0000\u000e\u000f\u0005"+
-		"\u0000\u0000\u0001\u000f\u0001\u0001\u0000\u0000\u0000\u0010\u0011\u0005"+
-		"\u0001\u0000\u0000\u0011\u0012\u0005\u0002\u0000\u0000\u0012\u0015\u0005"+
-		"\t\u0000\u0000\u0013\u0016\u0003\u0004\u0002\u0000\u0014\u0016\u0003\u0006"+
-		"\u0003\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0015\u0014\u0001\u0000"+
-		"\u0000\u0000\u0016\u0017\u0001\u0000\u0000\u0000\u0017\u0015\u0001\u0000"+
-		"\u0000\u0000\u0017\u0018\u0001\u0000\u0000\u0000\u0018\u0003\u0001\u0000"+
-		"\u0000\u0000\u0019\u001a\u0007\u0000\u0000\u0000\u001a\u0005\u0001\u0000"+
-		"\u0000\u0000\u001b\u001d\u0007\u0001\u0000\u0000\u001c\u001b\u0001\u0000"+
-		"\u0000\u0000\u001d\u001e\u0001\u0000\u0000\u0000\u001e\u001c\u0001\u0000"+
-		"\u0000\u0000\u001e\u001f\u0001\u0000\u0000\u0000\u001f\u0007\u0001\u0000"+
-		"\u0000\u0000\u0005\n\f\u0015\u0017\u001e";
+		"\u0001\u0001\u0001\u0001\u0001\u0005\u0001\u0014\b\u0001\n\u0001\f\u0001"+
+		"\u0017\t\u0001\u0001\u0001\u0001\u0001\u0004\u0001\u001b\b\u0001\u000b"+
+		"\u0001\f\u0001\u001c\u0001\u0002\u0001\u0002\u0001\u0003\u0004\u0003\""+
+		"\b\u0003\u000b\u0003\f\u0003#\u0001\u0003\u0000\u0000\u0004\u0000\u0002"+
+		"\u0004\u0006\u0000\u0002\u0001\u0000\u0003\u0004\u0002\u0000\u0005\u0005"+
+		"\u0007\t\'\u0000\n\u0001\u0000\u0000\u0000\u0002\u0010\u0001\u0000\u0000"+
+		"\u0000\u0004\u001e\u0001\u0000\u0000\u0000\u0006!\u0001\u0000\u0000\u0000"+
+		"\b\u000b\u0003\u0002\u0001\u0000\t\u000b\u0003\u0006\u0003\u0000\n\b\u0001"+
+		"\u0000\u0000\u0000\n\t\u0001\u0000\u0000\u0000\u000b\f\u0001\u0000\u0000"+
+		"\u0000\f\n\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000\u0000\r\u000e"+
+		"\u0001\u0000\u0000\u0000\u000e\u000f\u0005\u0000\u0000\u0001\u000f\u0001"+
+		"\u0001\u0000\u0000\u0000\u0010\u0011\u0005\u0001\u0000\u0000\u0011\u0015"+
+		"\u0005\u0002\u0000\u0000\u0012\u0014\u0005\b\u0000\u0000\u0013\u0012\u0001"+
+		"\u0000\u0000\u0000\u0014\u0017\u0001\u0000\u0000\u0000\u0015\u0013\u0001"+
+		"\u0000\u0000\u0000\u0015\u0016\u0001\u0000\u0000\u0000\u0016\u001a\u0001"+
+		"\u0000\u0000\u0000\u0017\u0015\u0001\u0000\u0000\u0000\u0018\u001b\u0003"+
+		"\u0004\u0002\u0000\u0019\u001b\u0003\u0006\u0003\u0000\u001a\u0018\u0001"+
+		"\u0000\u0000\u0000\u001a\u0019\u0001\u0000\u0000\u0000\u001b\u001c\u0001"+
+		"\u0000\u0000\u0000\u001c\u001a\u0001\u0000\u0000\u0000\u001c\u001d\u0001"+
+		"\u0000\u0000\u0000\u001d\u0003\u0001\u0000\u0000\u0000\u001e\u001f\u0007"+
+		"\u0000\u0000\u0000\u001f\u0005\u0001\u0000\u0000\u0000 \"\u0007\u0001"+
+		"\u0000\u0000! \u0001\u0000\u0000\u0000\"#\u0001\u0000\u0000\u0000#!\u0001"+
+		"\u0000\u0000\u0000#$\u0001\u0000\u0000\u0000$\u0007\u0001\u0000\u0000"+
+		"\u0000\u0006\n\f\u0015\u001a\u001c#";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
