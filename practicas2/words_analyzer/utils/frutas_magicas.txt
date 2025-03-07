@@ -9,73 +9,73 @@ Las frutas se miraron entre sí y decidieron organizarse por meses. Así comenz�
 
 Enero: El Invierno de los Cítricos
 
-En enero, el frío invierno llegó al huerto. Las frutas cítricas, como la Naranja, la Mandarina y la Toronja, se pusieron sus abrigos brillantes y dijeron:
+En enero, el frío invierno llegó al huerto. Las frutas cítricas, como la $Naranja, la $Mandarina y la $Toronja, se pusieron sus abrigos brillantes y dijeron:
 —¡Es nuestro turno! Nosotras llenaremos de vitamina C a los niños para que no se resfríen.
-Y así fue. Los niños disfrutaron de jugos dulces y ensaladas llenas de energía.
+Y así fue. Los niños disfrutaron de jugos dulces y ensaladas llenas de energía. == 3
 
-Febrero: Las Fresas al Rescate
+Febrero: Las $Fresas al Rescate
 
-En febrero, las Fresas llegaron con sus vestidos rojos y brillantes.
+En febrero, las $Fresas llegaron con sus vestidos rojos y brillantes.
 —¡Somos las reinas del amor! —gritaron—. ¡Y estamos listas para endulzar el Día de San Valentín!
-Las Fresas se unieron a las Guayabas y los Limones para crear postres deliciosos que hicieron sonreír a todos.
+Las $Fresas se unieron a las $Guayabas y los $Limones para crear postres deliciosos que hicieron sonreír a todos. == 5
 
 Marzo: La Primavera de los Colores
 
-Cuando llegó marzo, la primavera pintó el huerto de colores. Las Fresas todavía estaban allí, pero las Piñas y los Mangos llegaron con sus coronas doradas.
-—¡Es hora de jugar bajo el sol! —dijeron las Piñas.
-Los niños disfrutaron de batidos y helados llenos de sabor.
+Cuando llegó marzo, la primavera pintó el huerto de colores. Las $Fresas todavía estaban allí, pero las $Piñas y los $Mangos llegaron con sus coronas doradas.
+—¡Es hora de jugar bajo el sol! —dijeron las $Piñas.
+Los niños disfrutaron de batidos y helados llenos de sabor. == 4
 
 Abril: El Baile de las Frutas Tropicales
 
-En abril, las frutas tropicales organizaron un gran baile. Las Papayas, los Melones y los Mangos bailaron al ritmo de la música.
+En abril, las frutas tropicales organizaron un gran baile. Las $Papayas, los $Melones y los $Mangos bailaron al ritmo de la música.
 —¡Somos las más jugosas y divertidas! —gritaron.
-Y los niños rieron mientras comían rodajas de Melón y Sandía.
+Y los niños rieron mientras comían rodajas de $Melón y $Sandía. == 5
 
 Mayo: Las Frutas de Verano Llegan
 
-En mayo, el calor comenzó a sentirse. Las Ciruelas y los Duraznos llegaron con sus trajes morados y anaranjados.
+En mayo, el calor comenzó a sentirse. Las $Ciruelas y los $Duraznos llegaron con sus trajes morados y anaranjados.
 —¡Somos las frutas más dulces del verano! —dijeron.
 Los niños las disfrutaron en almíbares y postres, mientras soñaban con vacaciones.
 
-Junio: La Fiesta de la Sandía
+Junio: La Fiesta de la $Sandía
 
-En junio, las Sandías organizaron una fiesta gigante.
+En junio, las $Sandías organizaron una fiesta gigante.
 —¡Somos las reinas del verano! —gritaron—. ¡Y estamos llenas de agua para refrescar a todos!
-Los niños se divirtieron comiendo Sandía en la playa y en los parques.
+Los niños se divirtieron comiendo $Sandía en la playa y en los parques.
 
 Julio: Las Frutas se Despiden del Verano
 
-En julio, las Higos y las Peras llegaron para despedir el verano.
+En julio, las $Higos y las $Peras llegaron para despedir el verano.
 —¡No se preocupen! —dijeron—. Aún hay tiempo para disfrutar de nosotras.
 Los niños las comieron en ensaladas y jugos, recordando lo divertido que había sido el verano.
 
-Agosto: Las Tunas Hacen su Aparición
+Agosto: Las $Tunas Hacen su Aparición
 
-En agosto, las Tunas llegaron con sus espinas y colores brillantes.
+En agosto, las $Tunas llegaron con sus espinas y colores brillantes.
 —¡Cuidado con nosotras! —advirtieron—. Pero si nos pelas bien, somos dulces y deliciosas.
 Los niños aprendieron a comerlas con cuidado y las amaron.
 
-Septiembre: El Otoño de las Manzanas
+Septiembre: El Otoño de las $Manzanas
 
-En septiembre, las Manzanas y las Uvas llegaron con sus colores otoñales.
+En septiembre, las $Manzanas y las $Uvas llegaron con sus colores otoñales.
 —¡Es hora de volver a la escuela! —dijeron—. Y nosotras somos perfectas para las loncheras.
 Los niños las llevaron a la escuela y las compartieron con sus amigos.
 
-Octubre: Las Granadas Brillan
+Octubre: Las $Granadas Brillan
 
-En octubre, las Granadas llegaron con sus joyas rojas.
+En octubre, las $Granadas llegaron con sus joyas rojas.
 —¡Somos las frutas más elegantes! —dijeron—. Y estamos llenas de antioxidantes.
 Los niños las abrieron con cuidado y disfrutaron de sus semillas brillantes.
 
 Noviembre: Las Frutas se Preparan para el Frío
 
-En noviembre, las Guayabas y los Limones volvieron al huerto.
+En noviembre, las $Guayabas y los $Limones volvieron al huerto.
 —¡Es hora de prepararse para el invierno! —dijeron—. Nosotras los protegeremos con vitamina C.
 Los niños las usaron para hacer aguas frescas y postres calientes.
 
 Diciembre: La Navidad de las Frutas
 
-En diciembre, las frutas se reunieron para celebrar la Navidad. Las Naranjas, las Mandarinas y las Guayabas decoraron el huerto con luces y colores.
+En diciembre, las frutas se reunieron para celebrar la Navidad. Las $Naranjas, las $Mandarinas y las $Guayabas decoraron el huerto con luces y colores.
 —¡Feliz Navidad a todos! —gritaron—. ¡Y no olviden comernos en sus fiestas!
 Los niños las disfrutaron en ponches y postres navideños.
 

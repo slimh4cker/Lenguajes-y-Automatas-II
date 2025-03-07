@@ -26,15 +26,6 @@ class WordsListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by WordsParser#fruta.
-    def enterFruta(self, ctx:WordsParser.FrutaContext):
-        pass
-
-    # Exit a parse tree produced by WordsParser#fruta.
-    def exitFruta(self, ctx:WordsParser.FrutaContext):
-        pass
-
-
     # Enter a parse tree produced by WordsParser#otro.
     def enterOtro(self, ctx:WordsParser.OtroContext):
         pass

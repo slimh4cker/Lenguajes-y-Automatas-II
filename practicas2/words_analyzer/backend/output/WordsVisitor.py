@@ -19,11 +19,6 @@ class WordsVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by WordsParser#fruta.
-    def visitFruta(self, ctx:WordsParser.FrutaContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by WordsParser#otro.
     def visitOtro(self, ctx:WordsParser.OtroContext):
         return self.visitChildren(ctx)
