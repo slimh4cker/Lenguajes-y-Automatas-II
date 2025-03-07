@@ -111,13 +111,20 @@ class GuiTerminal(tk.Tk):
         )
         self.result_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-    def save_csv(self):
-
+    def save_csv(self): # ahora guarda txt pero se mantendra el nombre anterior
         file_path = filedialog.asksaveasfilename(
             defaultextension=".txt",
             filetypes=[("Archivos de texto", "*.txt")],
             title="Guardar archivo de texto"
         )
+
+        if file_path:
+            try:
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    content = self.content_input.get("1.0", tk.END)
+                    file.write(content)
+            except Exception as e:
+                self.display_result(f"Error saving file: {str(e)}", False)
 
     def load_file_txt(self):
         file_path = filedialog.askopenfilename(
