@@ -4,9 +4,9 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 from antlr4 import InputStream, CommonTokenStream
-from backend.output.WordsLexer import WordsLexer
-from backend.output.WordsParser import WordsParser
-from backend.MyVisitor import MyVisitor
+from practicas2.words_analyzer.backend.output.WordsLexer import WordsLexer
+from practicas2.words_analyzer.backend.output.WordsParser import WordsParser
+from practicas2.words_analyzer.backend.MyVisitor import MyVisitor
 
 
 class GuiTerminal(tk.Tk):
