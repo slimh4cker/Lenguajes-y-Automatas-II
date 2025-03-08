@@ -1,0 +1,16 @@
+T__0=1
+NOMBRE=2
+KG=3
+PIEZA=4
+PIEZAS=5
+COLON=6
+WORD=7
+PUNCTUATION=8
+NUMBER=9
+WHITESPACE=10
+NEWLINE=11
+'/'=1
+'kg'=3
+'pieza'=4
+'piezas'=5
+':'=6

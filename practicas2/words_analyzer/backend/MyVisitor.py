@@ -1,6 +1,6 @@
 from collections import defaultdict
-from backend.output.WordsParser import WordsParser
-from backend.output.WordsVisitor import WordsVisitor
+from practicas2.words_analyzer.backend.output.WordsParser import WordsParser
+from practicas2.words_analyzer.backend.output.WordsVisitor import WordsVisitor
 
 
 class MyVisitor(WordsVisitor):
