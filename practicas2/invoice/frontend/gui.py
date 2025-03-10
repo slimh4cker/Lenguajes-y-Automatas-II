@@ -4,9 +4,9 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 from antlr4 import InputStream, CommonTokenStream
-from practicas2.invoice.backend.output.InvoiceLexer import InvoiceLexer
-from practicas2.invoice.backend.output.InvoiceParser import InvoiceParser
-from practicas2.invoice.backend.MyVisitor import MyVisitor
+from backend.output.InvoiceLexer import InvoiceLexer
+from backend.output.InvoiceParser import InvoiceParser
+from backend.MyVisitor import MyVisitor
 
 
 class GuiTerminal(tk.Tk):
@@ -159,10 +159,11 @@ class GuiTerminal(tk.Tk):
             lexer = InvoiceLexer(input_stream)
             token_stream = CommonTokenStream(lexer)
             parser = InvoiceParser(token_stream)
-            tree = parser.texto()
+            tree = parser.invoice()
             visitor = MyVisitor()
 
             results = visitor.visit(tree)
+            print("retorno del visitor:",results)
 
 
             self.display_result("\n".join(results), True)
