@@ -43,28 +43,32 @@ def create_addresses(datos, styles):
 
 def create_items_table(datos, styles):
     data = [
-        [Paragraph("<b>CANT.</b>", styles["Normal"]),
-         Paragraph("<b>DESCRIPCIÓN</b>", styles["Normal"]),
-         Paragraph("<b>PRECIO UNITARIO</b>", styles["Normal"]),
-         Paragraph("<b>IMPORTE</b>", styles["Normal"])]
+        [
+            Paragraph("<b>FRUTA</b>", styles["Normal"]),
+            Paragraph("<b>CANT.</b>", styles["Normal"]),
+            Paragraph("<b>UNIDAD</b>", styles["Normal"]),
+            Paragraph("<b>PRECIO UNITARIO</b>", styles["Normal"]),
+            Paragraph("<b>IMPORTE</b>", styles["Normal"])
+        ]
     ]
 
+    # Filas de la tabla con los items
     for item in datos["items"]:
         data.append([
-            str(item["cantidad"]),
-            item["descripcion"],
-            f"{item['precio_unitario']:.2f} €",
-            f"{item['importe']:.2f} €"
+            item["descripcion"],  # Nombre de la fruta
+            str(item["cantidad"]),  # Cantidad (1, 3, 0.5, etc.)
+            item.get("unidad", "kg"),  # Unidad (kg o pieza)
+            f"${item['precio_unitario']:.2f}",  # Precio unitario
+            f"${item['importe']:.2f}"  # Importe total
         ])
 
-    data += [
-        ["", "", "Subtotal", f"{datos['subtotal']:.2f} €"],
-        ["", "", f"IVA 21.0%", f"{datos['iva']:.2f} €"],
-        ["", "", Paragraph("<b>TOTAL</b>", styles["Normal"]), f"{datos['total']:.2f} €"]
-    ]
+    # Subtotal, IVA y Total al final
+    data.append(["", "", "", "Subtotal", f"${datos['subtotal']:.2f}"])
+    data.append(["", "", "", f"IVA 21.0%", f"${datos['iva']:.2f}"])
+    data.append(["", "", "", Paragraph("<b>TOTAL</b>", styles["Normal"]), f"${datos['total']:.2f}"])
 
     return [
-        Table(data, colWidths=[40, 250, 70, 70], style=TableStyle([
+        Table(data, colWidths=[70, 50, 70, 120], style=TableStyle([
             ('GRID', (0, 0), (-1, -4), 0.5, colors.grey),
             ('LINEBELOW', (0, 0), (-1, 0), 1, colors.black),
             ('ALIGN', (2, 1), (3, -1), 'RIGHT'),

@@ -1,15 +1,14 @@
 import os
-from datetime import datetime, timedelta
 from tkinter import scrolledtext, filedialog
 from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 from antlr4 import InputStream, CommonTokenStream
-from practicas2.invoice.backend.output.InvoiceLexer import InvoiceLexer
-from practicas2.invoice.backend.output.InvoiceParser import InvoiceParser
-from practicas2.invoice.backend.pdf_generator import generate_bill_pdf
-from practicas2.invoice.utils.classes.InvoiceCounter import invoice_counter
-from practicas2.invoice.backend.MyVisitor import MyVisitor
+from practicas2.words_analyzer.backend.output.WordsLexer import WordsLexer
+from practicas2.words_analyzer.backend.output.WordsParser import WordsParser
+from practicas2.words_analyzer.backend.MyVisitor import MyVisitor
+import re
+from unicodedata import normalize
 
 
 class GuiTerminal(tk.Tk):
@@ -24,7 +23,7 @@ class GuiTerminal(tk.Tk):
         self.grid_rowconfigure(2, weight=2)
         self.grid_columnconfigure(0, weight=1)
         self.current_scale = 1.0
-        self.bill_data = None
+        self.csv_data = None
 
         self.create_widgets()
 
@@ -43,7 +42,6 @@ class GuiTerminal(tk.Tk):
         self.img_browser = self.load_image("folder-browser.png")
         self.img_analyse = self.load_image("analyse-file.png")
         self.img_save_file = self.load_image("save-file.png")
-        self.img_genr_pdf = self.load_image("generate-pdf.png")
 
         buttons_frame = tk.Frame(self, bg='#1a1b2f')
         buttons_frame.grid(row=0, column=0, sticky="n", padx=10, pady=(10, 5))
@@ -82,7 +80,7 @@ class GuiTerminal(tk.Tk):
         button_browse.pack(side=LEFT, padx=5)
 
         button_save = tk.Button(
-            buttons_frame, text=' Save', command=self.save_file,
+            buttons_frame, text=' Save', command=self.save_csv,
             image=self.img_save_file,
             compound=LEFT,
             bg='#6a5acd', fg='#dcdcdc', activebackground='#836fff',
@@ -90,22 +88,6 @@ class GuiTerminal(tk.Tk):
             relief=FLAT, width=125
         )
         button_save.pack(side=LEFT, padx=5)
-
-        button_generate = tk.Button(
-            buttons_frame,
-            text=' Generate Bill',
-            command=self.generate_invoice,
-            image=self.img_genr_pdf,
-            compound=LEFT,
-            bg='#6a5acd',
-            fg='#dcdcdc',
-            activebackground='#836fff',
-            activeforeground='#1a1b2f',
-            font=('Courier', 12),
-            relief=FLAT,
-            width=200
-        )
-        button_generate.pack(side=LEFT, padx=5)
 
         # Input Expr Frame
         input_frame = tk.Frame(self, bg='#1a1b2f')
@@ -131,7 +113,7 @@ class GuiTerminal(tk.Tk):
         )
         self.result_output.pack(fill=BOTH, expand=True, padx=5, pady=5)
 
-    def save_file(self):  # ahora guarda txt pero se mantendra el nombre anterior
+    def save_csv(self):  # ahora guarda txt pero se mantendra el nombre anterior
         file_path = filedialog.asksaveasfilename(
             defaultextension=".txt",
             filetypes=[("Archivos de texto", "*.txt")],
@@ -174,61 +156,35 @@ class GuiTerminal(tk.Tk):
 
     def validate_text(self):
         input_text = self.content_input.get("1.0", tk.END)
+        if not input_text.strip():
+            self.display_result("Error: empty text.", False)
+            return
         try:
+            # Eliminación de acentos sin eliminar ñ
+            input_text = re.sub(
+                r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1",
+                normalize("NFD", input_text), 0, re.I
+            )
+            input_text = normalize('NFC', input_text)
+            # El lower case se aplica en el My Visitor
             input_stream = InputStream(input_text)
-            lexer = InvoiceLexer(input_stream)
+            lexer = WordsLexer(input_stream)
             token_stream = CommonTokenStream(lexer)
-            parser = InvoiceParser(token_stream)
-            tree = parser.invoice()
+            parser = WordsParser(token_stream)
+            tree = parser.texto()
             visitor = MyVisitor()
 
-            # Obtener la factura generada
-            self.bill_data = visitor.visit(tree)
+            results = visitor.visit(tree)
+            report = [f" - Frutas únicas totales: {len(results['unique'])}", "\n - Frutas por mes:"]
+            for month, fruits in results["monthly"].items():
+                report.append(f"    {month}: {fruits} frutas")
 
-            # Añadir campos adicionales y asegurar que no sean None
-            self.bill_data.update({
-                "empresa_nombre": "Frutas de la Barragang",
-                "empresa_direccion": "Blvd. Tecnológico 150\nEx Ejido Chapultepec, CP 22780",
-                "enviar_a": self.bill_data.get("facturar_a", ""),
-                "numero_factura": invoice_counter.get_next(),
-                "fecha_factura": datetime.now().strftime("%d/%m/%Y"),
-                "numero_pedido": "PED-" + datetime.now().strftime("%Y%m%d"),
-                "fecha_vencimiento": (datetime.now() + timedelta(days=15)).strftime("%d/%m/%Y"),
-                "subtotal": self.bill_data.get("subtotal", 0),  # Usar 0 si no está presente
-                "iva": round(self.bill_data.get("subtotal", 0) * 0.21, 2),  # Calcular IVA
-                "total": round(self.bill_data.get("subtotal", 0) * 1.21, 2),  # Calcular total
-                "condiciones": "Pago en 15 días\nCuenta: ES12 3456 7891\nBanco: Banco Ejemplo"
-            })
+            report.append("\n - Apariciones por fruta:")
+            for fruit, count in sorted(results["counts"].items()):
+                report.append(f"    {fruit}: {count}")
 
-            self.display_result("Bill validated", True)
+            report.append(f"\n -Total de frutas: {results['total']}")
+
+            self.display_result("\n".join(report), True)
         except Exception as e:
             self.display_result(f"Error en el análisis: {str(e)}", False)
-
-    def generate_invoice(self):
-        if not self.bill_data:
-            self.display_result("Primero valida los datos con Analyze", False)
-            return
-
-        try:
-            # Verificar campos requeridos
-            required_fields = [
-                'empresa_nombre', 'empresa_direccion', 'facturar_a', 'enviar_a',
-                'numero_factura', 'fecha_factura', 'items', 'subtotal', 'iva', 'total'
-            ]
-
-            missing = [field for field in required_fields if field not in self.bill_data]
-            if missing:
-                raise ValueError(f"Faltan campos: {', '.join(missing)}")
-
-            file_path = filedialog.asksaveasfilename(
-                defaultextension=".pdf",
-                filetypes=[("PDF files", "*.pdf")],
-                title="Guardar Factura como PDF"
-            )
-
-            if file_path:
-                generate_bill_pdf(file_path, self.bill_data)
-                self.display_result(f"PDF generado en:\n{file_path}", True)
-
-        except Exception as e:
-            self.display_result(f"Error al generar PDF: {str(e)}", False)

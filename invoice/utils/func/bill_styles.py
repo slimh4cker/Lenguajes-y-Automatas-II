@@ -4,7 +4,6 @@ from reportlab.lib import colors
 from reportlab.lib.units import mm
 
 
-
 def get_page_config():
     return {
         "pagesize": A4,
