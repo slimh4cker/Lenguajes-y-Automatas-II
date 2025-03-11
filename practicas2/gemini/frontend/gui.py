@@ -22,6 +22,7 @@ class GuiTerminal(tk.Tk):
         self.csv_data = None
 
         self.create_widgets()
+        self.bind_keys() 
 
     def load_image(self, image_name, size=(20, 20)):
         file_path = os.path.dirname(os.path.realpath(__file__))
@@ -59,31 +60,31 @@ class GuiTerminal(tk.Tk):
         )
         button_execute.pack(side=LEFT, padx=5)
 
-        button_browse = tk.Button(
-            buttons_frame,
-            text=' Browse',
-            command=self.load_file_txt,
-            image=self.img_browser,
-            compound=LEFT,
-            bg='#6a5acd',
-            fg='#dcdcdc',
-            activebackground='#836fff',
-            activeforeground='#1a1b2f',
-            font=('Courier', 12),
-            relief=FLAT,
-            width=125
-        )
-        button_browse.pack(side=LEFT, padx=5)
+        #button_browse = tk.Button(
+        #    buttons_frame,
+        #    text=' Browse',
+        #    command=self.load_file_txt,
+        #    image=self.img_browser,
+        #    compound=LEFT,
+        #    bg='#6a5acd',
+        #    fg='#dcdcdc',
+        #    activebackground='#836fff',
+        #    activeforeground='#1a1b2f',
+        #    font=('Courier', 12),
+        #    relief=FLAT,
+        #    width=125
+        #)
+        #button_browse.pack(side=LEFT, padx=5)
 
-        button_save = tk.Button(
-            buttons_frame, text=' Save', command=self.save_csv,
-            image=self.img_save_file,
-            compound=LEFT,
-            bg='#6a5acd', fg='#dcdcdc', activebackground='#836fff',
-            activeforeground='#1a1b2f', font=('Courier', 12),
-            relief=FLAT, width=125
-        )
-        button_save.pack(side=LEFT, padx=5)
+        #button_save = tk.Button(
+        #    buttons_frame, text=' Save', command=self.save_csv,
+        #    image=self.img_save_file,
+        #    compound=LEFT,
+        #    bg='#6a5acd', fg='#dcdcdc', activebackground='#836fff',
+        #    activeforeground='#1a1b2f', font=('Courier', 12),
+        #    relief=FLAT, width=125
+        #)
+        #button_save.pack(side=LEFT, padx=5)
 
         # Input Expr Frame
         input_frame = tk.Frame(self, bg='#1a1b2f')
@@ -158,3 +159,15 @@ class GuiTerminal(tk.Tk):
             self.display_result(result, True)
         except Exception as e:
             self.display_result(f"Error en el análisis: {str(e)}", False)
+
+    def bind_keys(self):
+        self.content_input.bind("<Return>", self.on_enter_pressed)
+        self.content_input.bind("<Shift-Return>", self.on_shift_enter_pressed)
+
+    def on_enter_pressed(self, event):
+        self.validate_text()
+        return "break"  
+
+    def on_shift_enter_pressed(self, event):
+        self.content_input.insert(tk.INSERT, "\n")
+        return "break"  
