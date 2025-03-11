@@ -4,11 +4,7 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 from antlr4 import InputStream, CommonTokenStream
-from practicas2.words_analyzer.backend.output.WordsLexer import WordsLexer
-from practicas2.words_analyzer.backend.output.WordsParser import WordsParser
-from practicas2.words_analyzer.backend.MyVisitor import MyVisitor
-import re
-from unicodedata import normalize
+from lib.api_connection import api_connection
 
 
 class GuiTerminal(tk.Tk):
@@ -49,7 +45,7 @@ class GuiTerminal(tk.Tk):
         # Botón Analyze con imagen
         button_execute = tk.Button(
             buttons_frame,
-            text=' Analyse',
+            text='Send',
             command=self.validate_text,
             image=self.img_analyse,
             compound=LEFT,
@@ -157,32 +153,8 @@ class GuiTerminal(tk.Tk):
     def validate_text(self):
         input_text = self.content_input.get("1.0", tk.END)
         try:
-            # Eliminación de acentos sin eliminar ñ (Se rifó el wey de Stack Overflow)
-            input_text = re.sub(
-                r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1",
-                normalize( "NFD", input_text), 0, re.I 
-            )
-            input_text = normalize( 'NFC', input_text)
-            # El lower case se aplica en el My Visitor
-            input_stream = InputStream(input_text)
-            lexer = WordsLexer(input_stream)
-            token_stream = CommonTokenStream(lexer)
-            parser = WordsParser(token_stream)
-            tree = parser.texto()
-            visitor = MyVisitor()
-
-            results = visitor.visit(tree)
-            report = [f" - Frutas únicas totales: {len(results['unique'])}", "\n - Frutas por mes:"]
-            for month, fruits in results["monthly"].items():
-                report.append(f"    {month}: {fruits} frutas")
-            
-            report.append("\n - Apariciones por fruta:")
-            for fruit, count in sorted(results["counts"].items()):
-                report.append(f"    {fruit}: {count}")
-
-            report.append(f"\n -Total de frutas: {results['total']}")
-
-
-            self.display_result("\n".join(report), True)
+            result = api_connection(input_text)
+            print(result)
+            self.display_result(result, True)
         except Exception as e:
             self.display_result(f"Error en el análisis: {str(e)}", False)
