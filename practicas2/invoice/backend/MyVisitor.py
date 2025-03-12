@@ -1,7 +1,7 @@
-from practicas2.invoice.backend.output.InvoiceParser import InvoiceParser
-from practicas2.invoice.backend.output.InvoiceVisitor import InvoiceVisitor
+from backend.output.InvoiceParser import InvoiceParser
+from backend.output.InvoiceVisitor import InvoiceVisitor
 from collections import defaultdict
-from practicas2.invoice.utils.func.fruta_funciones import (
+from utils.func.fruta_funciones import (
     detectarFruta, crearFactura, dict_precios, normalize
 )
 
@@ -34,6 +34,7 @@ class MyVisitor(InvoiceVisitor):
     def visitHeader(self, ctx: InvoiceParser.HeaderContext):
         # Capturar el nombre completo del cliente
         nombre_parts = [child.getText() for child in ctx.getChildren()]
+        print(f"El nombre es: {nombre_parts}")
         return " ".join(nombre_parts)
 
     def visitPurchase(self, ctx: InvoiceParser.PurchaseContext):
@@ -42,7 +43,7 @@ class MyVisitor(InvoiceVisitor):
 
         # Capturar fruta
         fruta = self.visit(ctx.fruit())
-        fruta_normalizada = detectarFruta(fruta)
+        fruta_normalizada = detectarFruta(fruta).capitalize()
 
         if not fruta_normalizada:
             return None  # Si no es una fruta válida, ignorar
@@ -79,6 +80,9 @@ class MyVisitor(InvoiceVisitor):
 
     def visitFruit(self, ctx: InvoiceParser.FruitContext):
         fruta = ctx.getText()
-        return normalize(fruta.lower())  # Convertir a minúsculas y eliminar acentos
+        print(f"la fruta fue: {fruta}")
+        normalized = normalize(fruta.lower())  # Convertir a minúsculas y eliminar acentos
+        print(normalized)
+        return normalized
 
 

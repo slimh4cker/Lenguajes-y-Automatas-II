@@ -5,11 +5,11 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
 from antlr4 import InputStream, CommonTokenStream
-from practicas2.invoice.backend.output.InvoiceLexer import InvoiceLexer
-from practicas2.invoice.backend.output.InvoiceParser import InvoiceParser
-from practicas2.invoice.backend.pdf_generator import generate_bill_pdf
-from practicas2.invoice.utils.classes.InvoiceCounter import invoice_counter
-from practicas2.invoice.backend.MyVisitor import MyVisitor
+from backend.output.InvoiceLexer import InvoiceLexer
+from backend.output.InvoiceParser import InvoiceParser
+from backend.pdf_generator import generate_bill_pdf
+from utils.classes.InvoiceCounter import invoice_counter
+from backend.MyVisitor import MyVisitor
 
 
 class GuiTerminal(tk.Tk):

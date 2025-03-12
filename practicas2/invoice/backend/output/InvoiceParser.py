@@ -10,34 +10,38 @@ else:
 
 def serializedATN():
     return [
-        4,1,12,92,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,12,101,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,1,0,4,0,25,8,0,11,0,12,0,
-        26,1,0,1,0,3,0,31,8,0,1,0,1,0,1,1,1,1,5,1,37,8,1,10,1,12,1,40,9,
-        1,1,2,1,2,3,2,44,8,2,1,3,1,3,1,3,1,3,5,3,50,8,3,10,3,12,3,53,9,3,
-        1,4,1,4,5,4,57,8,4,10,4,12,4,60,9,4,1,5,1,5,1,5,3,5,65,8,5,1,5,1,
-        5,1,5,1,5,1,5,3,5,72,8,5,1,5,1,5,3,5,76,8,5,1,6,1,6,3,6,80,8,6,1,
-        7,1,7,1,7,1,7,1,8,1,8,1,9,1,9,1,10,1,10,1,10,0,0,11,0,2,4,6,8,10,
-        12,14,16,18,20,0,3,2,0,2,3,7,7,1,0,2,3,1,0,5,6,90,0,22,1,0,0,0,2,
-        34,1,0,0,0,4,41,1,0,0,0,6,45,1,0,0,0,8,54,1,0,0,0,10,75,1,0,0,0,
-        12,79,1,0,0,0,14,81,1,0,0,0,16,85,1,0,0,0,18,87,1,0,0,0,20,89,1,
-        0,0,0,22,24,3,2,1,0,23,25,3,4,2,0,24,23,1,0,0,0,25,26,1,0,0,0,26,
-        24,1,0,0,0,26,27,1,0,0,0,27,28,1,0,0,0,28,30,3,6,3,0,29,31,5,11,
-        0,0,30,29,1,0,0,0,30,31,1,0,0,0,31,32,1,0,0,0,32,33,5,0,0,1,33,1,
-        1,0,0,0,34,38,5,9,0,0,35,37,5,9,0,0,36,35,1,0,0,0,37,40,1,0,0,0,
-        38,36,1,0,0,0,38,39,1,0,0,0,39,3,1,0,0,0,40,38,1,0,0,0,41,43,5,10,
-        0,0,42,44,7,0,0,0,43,42,1,0,0,0,43,44,1,0,0,0,44,5,1,0,0,0,45,51,
-        3,10,5,0,46,47,3,8,4,0,47,48,3,10,5,0,48,50,1,0,0,0,49,46,1,0,0,
-        0,50,53,1,0,0,0,51,49,1,0,0,0,51,52,1,0,0,0,52,7,1,0,0,0,53,51,1,
-        0,0,0,54,58,7,1,0,0,55,57,5,12,0,0,56,55,1,0,0,0,57,60,1,0,0,0,58,
-        56,1,0,0,0,58,59,1,0,0,0,59,9,1,0,0,0,60,58,1,0,0,0,61,62,3,12,6,
-        0,62,64,3,16,8,0,63,65,5,7,0,0,64,63,1,0,0,0,64,65,1,0,0,0,65,66,
-        1,0,0,0,66,67,3,20,10,0,67,76,1,0,0,0,68,69,3,12,6,0,69,71,3,18,
-        9,0,70,72,5,7,0,0,71,70,1,0,0,0,71,72,1,0,0,0,72,73,1,0,0,0,73,74,
-        3,20,10,0,74,76,1,0,0,0,75,61,1,0,0,0,75,68,1,0,0,0,76,11,1,0,0,
-        0,77,80,3,14,7,0,78,80,5,8,0,0,79,77,1,0,0,0,79,78,1,0,0,0,80,13,
-        1,0,0,0,81,82,5,8,0,0,82,83,5,1,0,0,83,84,5,8,0,0,84,15,1,0,0,0,
-        85,86,5,4,0,0,86,17,1,0,0,0,87,88,7,2,0,0,88,19,1,0,0,0,89,90,5,
-        10,0,0,90,21,1,0,0,0,10,26,30,38,43,51,58,64,71,75,79
+        26,1,0,1,0,1,0,1,1,1,1,5,1,34,8,1,10,1,12,1,37,9,1,1,2,1,2,3,2,41,
+        8,2,1,3,1,3,1,3,4,3,46,8,3,11,3,12,3,47,1,3,4,3,51,8,3,11,3,12,3,
+        52,3,3,55,8,3,1,3,1,3,5,3,59,8,3,10,3,12,3,62,9,3,1,4,1,4,5,4,66,
+        8,4,10,4,12,4,69,9,4,1,5,1,5,1,5,3,5,74,8,5,1,5,1,5,1,5,1,5,1,5,
+        3,5,81,8,5,1,5,1,5,3,5,85,8,5,1,6,1,6,3,6,89,8,6,1,7,1,7,1,7,1,7,
+        1,8,1,8,1,9,1,9,1,10,1,10,1,10,0,0,11,0,2,4,6,8,10,12,14,16,18,20,
+        0,3,2,0,2,3,7,7,2,0,2,3,11,11,1,0,5,6,102,0,22,1,0,0,0,2,31,1,0,
+        0,0,4,38,1,0,0,0,6,42,1,0,0,0,8,63,1,0,0,0,10,84,1,0,0,0,12,88,1,
+        0,0,0,14,90,1,0,0,0,16,94,1,0,0,0,18,96,1,0,0,0,20,98,1,0,0,0,22,
+        24,3,2,1,0,23,25,3,4,2,0,24,23,1,0,0,0,25,26,1,0,0,0,26,24,1,0,0,
+        0,26,27,1,0,0,0,27,28,1,0,0,0,28,29,3,6,3,0,29,30,5,0,0,1,30,1,1,
+        0,0,0,31,35,5,9,0,0,32,34,5,9,0,0,33,32,1,0,0,0,34,37,1,0,0,0,35,
+        33,1,0,0,0,35,36,1,0,0,0,36,3,1,0,0,0,37,35,1,0,0,0,38,40,5,10,0,
+        0,39,41,7,0,0,0,40,39,1,0,0,0,40,41,1,0,0,0,41,5,1,0,0,0,42,60,3,
+        10,5,0,43,54,3,8,4,0,44,46,5,10,0,0,45,44,1,0,0,0,46,47,1,0,0,0,
+        47,45,1,0,0,0,47,48,1,0,0,0,48,55,1,0,0,0,49,51,5,11,0,0,50,49,1,
+        0,0,0,51,52,1,0,0,0,52,50,1,0,0,0,52,53,1,0,0,0,53,55,1,0,0,0,54,
+        45,1,0,0,0,54,50,1,0,0,0,54,55,1,0,0,0,55,56,1,0,0,0,56,57,3,10,
+        5,0,57,59,1,0,0,0,58,43,1,0,0,0,59,62,1,0,0,0,60,58,1,0,0,0,60,61,
+        1,0,0,0,61,7,1,0,0,0,62,60,1,0,0,0,63,67,7,1,0,0,64,66,5,12,0,0,
+        65,64,1,0,0,0,66,69,1,0,0,0,67,65,1,0,0,0,67,68,1,0,0,0,68,9,1,0,
+        0,0,69,67,1,0,0,0,70,71,3,12,6,0,71,73,3,16,8,0,72,74,5,7,0,0,73,
+        72,1,0,0,0,73,74,1,0,0,0,74,75,1,0,0,0,75,76,3,20,10,0,76,85,1,0,
+        0,0,77,78,3,12,6,0,78,80,3,18,9,0,79,81,5,7,0,0,80,79,1,0,0,0,80,
+        81,1,0,0,0,81,82,1,0,0,0,82,83,3,20,10,0,83,85,1,0,0,0,84,70,1,0,
+        0,0,84,77,1,0,0,0,85,11,1,0,0,0,86,89,3,14,7,0,87,89,5,8,0,0,88,
+        86,1,0,0,0,88,87,1,0,0,0,89,13,1,0,0,0,90,91,5,8,0,0,91,92,5,1,0,
+        0,92,93,5,8,0,0,93,15,1,0,0,0,94,95,5,4,0,0,95,17,1,0,0,0,96,97,
+        7,2,0,0,97,19,1,0,0,0,98,99,5,10,0,0,99,21,1,0,0,0,12,26,35,40,47,
+        52,54,60,67,73,80,84,88
     ]
 
 class InvoiceParser ( Parser ):
@@ -122,9 +126,6 @@ class InvoiceParser ( Parser ):
                 return self.getTypedRuleContext(InvoiceParser.VerbContext,i)
 
 
-        def DOT(self):
-            return self.getToken(InvoiceParser.DOT, 0)
-
         def getRuleIndex(self):
             return InvoiceParser.RULE_invoice
 
@@ -168,15 +169,7 @@ class InvoiceParser ( Parser ):
 
             self.state = 28
             self.purchaseList()
-            self.state = 30
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==11:
-                self.state = 29
-                self.match(InvoiceParser.DOT)
-
-
-            self.state = 32
+            self.state = 29
             self.match(InvoiceParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -227,15 +220,15 @@ class InvoiceParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 34
+            self.state = 31
             self.match(InvoiceParser.NOMBRE)
-            self.state = 38
+            self.state = 35
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==9:
-                self.state = 35
+                self.state = 32
                 self.match(InvoiceParser.NOMBRE)
-                self.state = 40
+                self.state = 37
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -294,13 +287,13 @@ class InvoiceParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 41
+            self.state = 38
             self.match(InvoiceParser.WORD)
-            self.state = 43
+            self.state = 40
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & 140) != 0):
-                self.state = 42
+                self.state = 39
                 _la = self._input.LA(1)
                 if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 140) != 0)):
                     self._errHandler.recoverInline(self)
@@ -339,6 +332,18 @@ class InvoiceParser ( Parser ):
                 return self.getTypedRuleContext(InvoiceParser.SeparatorContext,i)
 
 
+        def WORD(self, i:int=None):
+            if i is None:
+                return self.getTokens(InvoiceParser.WORD)
+            else:
+                return self.getToken(InvoiceParser.WORD, i)
+
+        def DOT(self, i:int=None):
+            if i is None:
+                return self.getTokens(InvoiceParser.DOT)
+            else:
+                return self.getToken(InvoiceParser.DOT, i)
+
         def getRuleIndex(self):
             return InvoiceParser.RULE_purchaseList
 
@@ -366,17 +371,52 @@ class InvoiceParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 45
+            self.state = 42
             self.purchase()
-            self.state = 51
+            self.state = 60
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==2 or _la==3:
-                self.state = 46
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 2060) != 0):
+                self.state = 43
                 self.separator()
-                self.state = 47
+                self.state = 54
+                self._errHandler.sync(self)
+                token = self._input.LA(1)
+                if token in [10]:
+                    self.state = 45 
+                    self._errHandler.sync(self)
+                    _la = self._input.LA(1)
+                    while True:
+                        self.state = 44
+                        self.match(InvoiceParser.WORD)
+                        self.state = 47 
+                        self._errHandler.sync(self)
+                        _la = self._input.LA(1)
+                        if not (_la==10):
+                            break
+
+                    pass
+                elif token in [11]:
+                    self.state = 50 
+                    self._errHandler.sync(self)
+                    _la = self._input.LA(1)
+                    while True:
+                        self.state = 49
+                        self.match(InvoiceParser.DOT)
+                        self.state = 52 
+                        self._errHandler.sync(self)
+                        _la = self._input.LA(1)
+                        if not (_la==11):
+                            break
+
+                    pass
+                elif token in [8]:
+                    pass
+                else:
+                    pass
+                self.state = 56
                 self.purchase()
-                self.state = 53
+                self.state = 62
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -401,6 +441,9 @@ class InvoiceParser ( Parser ):
 
         def Y_CONJ(self):
             return self.getToken(InvoiceParser.Y_CONJ, 0)
+
+        def DOT(self):
+            return self.getToken(InvoiceParser.DOT, 0)
 
         def WS(self, i:int=None):
             if i is None:
@@ -435,20 +478,20 @@ class InvoiceParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 54
+            self.state = 63
             _la = self._input.LA(1)
-            if not(_la==2 or _la==3):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 2060) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 58
+            self.state = 67
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==12:
-                self.state = 55
+                self.state = 64
                 self.match(InvoiceParser.WS)
-                self.state = 60
+                self.state = 69
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -513,44 +556,44 @@ class InvoiceParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_purchase)
         self._la = 0 # Token type
         try:
-            self.state = 75
+            self.state = 84
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 61
+                self.state = 70
                 self.quantity()
 
-                self.state = 62
+                self.state = 71
                 self.unit()
-                self.state = 64
+                self.state = 73
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==7:
-                    self.state = 63
+                    self.state = 72
                     self.match(InvoiceParser.DE)
 
 
-                self.state = 66
+                self.state = 75
                 self.fruit()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 68
+                self.state = 77
                 self.quantity()
 
-                self.state = 69
+                self.state = 78
                 self.pieceUnit()
-                self.state = 71
+                self.state = 80
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if _la==7:
-                    self.state = 70
+                    self.state = 79
                     self.match(InvoiceParser.DE)
 
 
-                self.state = 73
+                self.state = 82
                 self.fruit()
                 pass
 
@@ -603,18 +646,18 @@ class InvoiceParser ( Parser ):
         localctx = InvoiceParser.QuantityContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_quantity)
         try:
-            self.state = 79
+            self.state = 88
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 77
+                self.state = 86
                 self.fraction()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 78
+                self.state = 87
                 self.match(InvoiceParser.NUMBER)
                 pass
 
@@ -667,11 +710,11 @@ class InvoiceParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_fraction)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 81
+            self.state = 90
             self.match(InvoiceParser.NUMBER)
-            self.state = 82
+            self.state = 91
             self.match(InvoiceParser.T__0)
-            self.state = 83
+            self.state = 92
             self.match(InvoiceParser.NUMBER)
         except RecognitionException as re:
             localctx.exception = re
@@ -718,7 +761,7 @@ class InvoiceParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_unit)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 85
+            self.state = 94
             self.match(InvoiceParser.KG)
         except RecognitionException as re:
             localctx.exception = re
@@ -769,7 +812,7 @@ class InvoiceParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 87
+            self.state = 96
             _la = self._input.LA(1)
             if not(_la==5 or _la==6):
                 self._errHandler.recoverInline(self)
@@ -821,7 +864,7 @@ class InvoiceParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_fruit)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 89
+            self.state = 98
             self.match(InvoiceParser.WORD)
         except RecognitionException as re:
             localctx.exception = re

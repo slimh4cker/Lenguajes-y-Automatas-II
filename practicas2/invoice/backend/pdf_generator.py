@@ -1,6 +1,6 @@
 from reportlab.platypus import SimpleDocTemplate
-from practicas2.invoice.utils.func.bill_styles import get_page_config, create_styles
-from practicas2.invoice.utils.func.bill_components import (create_header, create_addresses, create_items_table,
+from utils.func.bill_styles import get_page_config, create_styles
+from utils.func.bill_components import (create_header, create_addresses, create_items_table,
                                                            create_conditions)
 
 

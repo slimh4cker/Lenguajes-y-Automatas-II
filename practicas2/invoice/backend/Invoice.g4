@@ -1,7 +1,7 @@
 grammar Invoice;
 
 invoice 
-  : header verb+ purchaseList DOT? EOF
+  : header verb+ purchaseList EOF
   ;
 
 // El nombre puede ser completo 
@@ -16,11 +16,11 @@ verb
 
 // acepta 1 o más compras,separadas por ',' u 'o'
 purchaseList 
-  : purchase (separator purchase)*
+  : purchase (separator (WORD+ | DOT+)? purchase)*
   ;
 
 // Los espacios despues de las comas no son obligatorios
-separator : (COMMA | Y_CONJ) WS*;
+separator : (COMMA | Y_CONJ | DOT) WS*;
 
 
 // depende si se comprará piña o no (Dentro de MyVisitor solo la piña puede medirse por kilo)
