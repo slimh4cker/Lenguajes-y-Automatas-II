@@ -11,6 +11,9 @@ class MyVisitor(InvoiceVisitor):
         super().__init__()
         self.items = []  # Lista para almacenar los items
         self.client_name = ""  # Nombre del cliente
+        self.article_list= ["La", "Los" "El", "Señor","Señora",
+                            "Profesor", "Profesora", "Maestro", "Maestra",
+                            "Un", "Una", "Doctor", "Doctora"]
 
     def visitInvoice(self, ctx: InvoiceParser.InvoiceContext):
         self.items = []  # Reiniciar la lista de items
@@ -32,10 +35,16 @@ class MyVisitor(InvoiceVisitor):
         return crearFactura(datos_factura, self.client_name)
 
     def visitHeader(self, ctx: InvoiceParser.HeaderContext):
-        # Capturar el nombre completo del cliente
-        nombre_parts = [child.getText() for child in ctx.getChildren()]
-        print(f"El nombre es: {nombre_parts}")
-        return " ".join(nombre_parts)
+        # Obtener todos los tokens NOMBRE de la regla
+        nombres = ctx.NOMBRE()
+        # Filtrar aquellos tokens que no se encuentren en la lista de artículos
+        nombres_validos = [nombre.getText() for nombre in nombres 
+                        if nombre.getText() not in self.article_list]
+        resultado = " ".join(nombres_validos)
+        print("El nombre es:", resultado)
+        return resultado
+
+
 
     def visitPurchase(self, ctx: InvoiceParser.PurchaseContext):
         # Capturar cantidad
@@ -80,9 +89,7 @@ class MyVisitor(InvoiceVisitor):
 
     def visitFruit(self, ctx: InvoiceParser.FruitContext):
         fruta = ctx.getText()
-        print(f"la fruta fue: {fruta}")
         normalized = normalize(fruta.lower())  # Convertir a minúsculas y eliminar acentos
-        print(normalized)
         return normalized
 
 

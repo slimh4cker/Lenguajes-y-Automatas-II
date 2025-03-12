@@ -6,7 +6,7 @@ invoice
 
 // El nombre puede ser completo 
 header 
-  : NOMBRE (NOMBRE)*
+  : (WORD+)? NOMBRE (WORD+)? (NOMBRE)*
   ;
 
 // cualquier texto antes de un número es valido
@@ -60,7 +60,7 @@ KG     : 'kg';
 PIEZA  : 'pieza';
 PIEZAS : 'piezas';
 DE     : 'de';
-NUMBER : [0-9]+;
+NUMBER : [0-9.]+;
 NOMBRE : [A-ZÁÉÍÓÚ][a-záéíóúñÑ]+;
 WORD   : [a-zA-ZáéíóúÁÉÍÓÚñÑ]+;
 DOT    : '.';
